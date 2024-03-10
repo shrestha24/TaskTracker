@@ -20,7 +20,7 @@ public class UserController {
 
     @GetMapping("")
     public ResponseEntity<?> getAllUsers(){
-        List<User> userList = userService.getAllTasks();
+        List<User> userList = userService.getAllUsers();
         return ResponseEntity.of(Optional.ofNullable(userList));
     }
 
@@ -37,7 +37,7 @@ public class UserController {
     public ResponseEntity<?> updateTask(@RequestBody User user){
         return ResponseEntity.ok(userService.updateUser(user));
     }
-    @DeleteMapping("/taskId")
+    @DeleteMapping("/userId")
     public ResponseEntity<Boolean> deleteUser(@PathVariable(name = "userId") Long userId){
         userService.deleteUser(userId);
         return ResponseEntity.ok(true);

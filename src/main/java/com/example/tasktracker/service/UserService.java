@@ -16,7 +16,7 @@ import java.util.Optional;
 public class UserService {
     public final UserRepo userRepo;
 
-    public List<User> getAllTasks(){
+    public List<User> getAllUsers(){
         log.info("Getting all users in DB");
         return userRepo.findAll();
     }
