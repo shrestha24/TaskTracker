@@ -3,10 +3,7 @@ package com.example.tasktracker.entity;
 
 import com.example.tasktracker.enums.TaskState;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.FutureOrPresent;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -36,8 +33,8 @@ public class Task {
     String taskDescription;
     @Column(nullable = false)
     @NotNull
-    @Size(min = 1, message = "Story points are greater than 0")
-    @Size(max = 1000, message = "Story points should be less than 1000")
+    @Min(value = 0, message = "Zero")
+    @Max(value = 1000, message = "Story points should be less than 1000")
     Long storyPoints;
     @Column(nullable = true)
     String assignedUserId;

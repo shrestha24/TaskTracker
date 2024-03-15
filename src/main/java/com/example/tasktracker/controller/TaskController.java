@@ -2,6 +2,7 @@ package com.example.tasktracker.controller;
 
 import com.example.tasktracker.entity.Task;
 import com.example.tasktracker.service.TaskService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
@@ -19,12 +20,13 @@ public class TaskController{
 
     @GetMapping("")
     public ResponseEntity<?> getAllTask(){
+        System.out.println("Welcome");
         List<Task> taskList=taskService.getAllTasks();
         return ResponseEntity.of(Optional.ofNullable(taskList));
     }
 
     @PostMapping("")
-    public ResponseEntity<?> createTask(@RequestBody Task task){
+    public ResponseEntity<?> createTask(@Valid @RequestBody Task task){
         Task createdTask=taskService.createTask(task);
         return ResponseEntity.of(Optional.ofNullable(createdTask));
     }
