@@ -34,9 +34,10 @@ public class Task {
     @Column(nullable = false)
     @NotBlank(message = "Enter the Task Description")
     String taskDescription;
-    @Column(nullable = true)
-    @NotBlank(message = "Story points can't be zero")
-    @Size(min = 0, max = 100)
+    @Column(nullable = false)
+    @NotNull
+    @Size(min = 1, message = "Story points are greater than 0")
+    @Size(max = 1000, message = "Story points should be less than 1000")
     Long storyPoints;
     @Column(nullable = true)
     String assignedUserId;
@@ -45,9 +46,10 @@ public class Task {
     @NotNull(message = "Task cannot be null")
     TaskState entityState;
     @Column
-    @FutureOrPresent(message = "")
+    @FutureOrPresent(message = "Start date should not be null and be greater than targetDate")
     private LocalDateTime startDate;
     @Column
+    @FutureOrPresent(message = "Target Date should not be null nad less than start date ")
     private LocalDateTime targetDate;
     @CreatedDate
     @Column(name = "createdAt")
